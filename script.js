@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Lógica do Menu Hambúrguer
+    // 2. Lógica do Menu Hambúrguer (Mobile)
     const menuIcon = document.querySelector('.mobile-menu-icon');
     const navLinks = document.querySelector('.nav-links');
     const links = document.querySelectorAll('.nav-links a');
@@ -17,12 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             menuIcon.classList.toggle('active');
             navLinks.classList.toggle('active');
-            
-            // Impede o scroll do corpo quando o menu está aberto
             document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'initial';
         });
 
-        // Fecha o menu ao clicar em qualquer link
         links.forEach(link => {
             link.addEventListener('click', () => {
                 menuIcon.classList.remove('active');
@@ -31,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Fecha o menu se clicar fora dele (na parte escura da tela)
         document.addEventListener('click', (e) => {
             if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !menuIcon.contains(e.target)) {
                 menuIcon.classList.remove('active');
@@ -48,22 +44,34 @@ document.addEventListener('DOMContentLoaded', () => {
         track.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
     }
 
-    // 4. Lógica do Formulário WhatsApp
-    const whatsappForm = document.getElementById('whatsappForm');
-    if (whatsappForm) {
-        whatsappForm.addEventListener('submit', function(e) {
+    // 4. Lógica do Formulário via E-mail
+    const emailForm = document.getElementById('emailForm');
+    if (emailForm) {
+        emailForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
             const nome = document.getElementById('nome').value;
             const descricao = document.getElementById('descricao').value;
-            const telefoneCliente = "5521982774699"; 
+            const emailDestino = "eletronicaguterres@guterres.com.br"; 
             
             if(nome && descricao) {
-                const mensagem = `*Solicitação de Orçamento - Guterres Eng*%0A%0A` +
-                                 `*Nome:* ${nome}%0A` +
-                                 `*Descrição:* ${descricao}`;
+                const assunto = encodeURIComponent(`Solicitação de Orçamento - ${nome}`);
+                const corpo = encodeURIComponent(
+                    `Olá, Equipe Guterres Eng.\n\n` +
+                    `Nova solicitação de orçamento recebida pelo site:\n\n` +
+                    `Nome/Empresa: ${nome}\n` +
+                    `Descrição da Necessidade: ${descricao}\n\n` +
+                    `---\n` +
+                    `Enviado via Guterres Engenharia Eletrônica.`
+                );
                 
-                const url = `https://wa.me/${telefoneCliente}?text=${mensagem}`;
-                window.open(url, '_blank');
+                const mailtoUrl = `mailto:${emailDestino}?subject=${assunto}&body=${corpo}`;
+                
+                // Técnica de fallback: cria um link invisível e simula o clique
+                // Isso funciona melhor que window.location.href em alguns navegadores
+                const link = document.createElement('a');
+                link.href = mailtoUrl;
+                link.click();
             } else {
                 alert("Por favor, preencha todos os campos.");
             }
