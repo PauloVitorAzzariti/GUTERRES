@@ -1,5 +1,5 @@
 :root {
-    --gold: #c5a059;
+    --gold: #4de4ff;
     --navy: #020617;
     --card-bg: #0f172a;
     --white: #ffffff;
@@ -194,7 +194,7 @@ nav {
 }
 
 .btn-primary:hover {
-    background: #d4b375;
+    background:  #4de4ff;
     transform: translateY(-2px);
 }
 
