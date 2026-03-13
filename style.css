@@ -607,3 +607,27 @@ footer {
         text-align: center;
     }
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 50px; /* Ajuste a altura conforme necessário para o seu header */
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* Ajuste para telas menores (Mobile) */
+@media (max-width: 7868px) {
+    .logo-img {
+        height: 40px; 
+    }
+}
