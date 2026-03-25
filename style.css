@@ -462,7 +462,6 @@ footer {
 
     .logo { order: 1; }
 
-    .logos-org { display: none; } /* Oculto no header mobile para limpar o visual */
 
     .nav-links {
         position: fixed;
