@@ -121,8 +121,11 @@ nav {
 
 .logos-org {
     display: flex;
-    gap: 12px;
-    align-items: center;
+    justify-content: center; /* Isso centraliza horizontalmente */
+    align-items: center;     /* Isso garante que fiquem alinhadas na mesma altura */
+    gap: 20px;               /* Espaçamento entre as logos */
+    width: 20%;            /* Garante que o container ocupe toda a largura disponível */
+    margin: 20px 0;         /* Adiciona um espaço em cima e embaixo, se necessário */
 }
 
 .logos-org img {
