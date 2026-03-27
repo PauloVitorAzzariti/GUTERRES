@@ -56,19 +56,19 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if(nome && descricao) {
                 const assunto = encodeURIComponent(`Solicitação de Orçamento - ${nome}`);
+                
+                // Texto atualizado conforme a solicitação do cliente
                 const corpo = encodeURIComponent(
-                    `Olá, Equipe Guterres Eng.\n\n` +
+                    `Olá, Equipe ELETRÔNICA GUTERRES LTDA.\n\n` +
                     `Nova solicitação de orçamento recebida pelo site:\n\n` +
                     `Nome/Empresa: ${nome}\n` +
                     `Descrição da Necessidade: ${descricao}\n\n` +
                     `---\n` +
-                    `Enviado via Guterres Engenharia Eletrônica.`
+                    `Enviado via ELETRÔNICA GUTERRES LTDA.`
                 );
                 
                 const mailtoUrl = `mailto:${emailDestino}?subject=${assunto}&body=${corpo}`;
                 
-                // Técnica de fallback: cria um link invisível e simula o clique
-                // Isso funciona melhor que window.location.href em alguns navegadores
                 const link = document.createElement('a');
                 link.href = mailtoUrl;
                 link.click();
